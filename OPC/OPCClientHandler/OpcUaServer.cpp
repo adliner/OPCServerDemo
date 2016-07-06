@@ -15,7 +15,7 @@ OpcUaServer::~OpcUaServer()
 	uninitialize();
 }
 
-void OPCConnection::OpcUaServer::run()
+void OpcUaServer::run()
 {
 	if ( !m_bServerInitialized )
 	{
@@ -39,7 +39,7 @@ void OpcUaServer::setTcpListeningPort( uint16_t tcpPort )
 	m_listeningTcpPort = static_cast<UA_UInt16>(tcpPort);
 }
 
-bool OPCConnection::OpcUaServer::initialize()
+bool OpcUaServer::initialize()
 {
 	if ( !m_bServerInitialized )
 	{
@@ -64,11 +64,11 @@ bool OPCConnection::OpcUaServer::initialize()
 	return true;
 }
 
-void OPCConnection::OpcUaServer::uninitialize()
+void OpcUaServer::uninitialize()
 {
 	if ( m_bServerInitialized )
 	{
-		if ( m_pServer != nullptr )
+		if ( m_pServer == nullptr )
 			UA_Server_delete( m_pServer );
 
 		m_networkLayer.deleteMembers( &m_networkLayer );
@@ -77,7 +77,7 @@ void OPCConnection::OpcUaServer::uninitialize()
 	m_bServerInitialized = false;
 }
 
-void OPCConnection::OpcUaServer::serverThread_main()
+void OpcUaServer::serverThread_main()
 {
 	UA_UInt16 allowedDelay = 0;
 
