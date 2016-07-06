@@ -68,7 +68,7 @@ void OPCConnection::OpcUaServer::uninitialize()
 {
 	if ( m_bServerInitialized )
 	{
-		if ( m_pServer == nullptr )
+		if ( m_pServer != nullptr )
 			UA_Server_delete( m_pServer );
 
 		m_networkLayer.deleteMembers( &m_networkLayer );
