@@ -68,6 +68,10 @@ void OpcUaServer::uninitialize()
 {
 	if ( m_bServerInitialized )
 	{
+		UA_StatusCode retval = UA_Server_run_shutdown( m_pServer );
+
+		assert( retval == UA_STATUSCODE_GOOD );
+
 		if ( m_pServer == nullptr )
 			UA_Server_delete( m_pServer );
 
