@@ -18,6 +18,8 @@ public:
 
 	void setTcpListeningPort( uint16_t tcpPort );
 
+	void setupNamespace();
+
 private:
 
 	bool initialize();
