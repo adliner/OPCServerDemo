@@ -45,17 +45,18 @@ void OpcUaServer::setupNamespace()
 // Adding Modbus object
 /////////////////////////////////////////////////////
 	UA_NodeId busObjectNodeID;
-	UA_ObjectTypeAttributes bus_objattr;
-	UA_ObjectTypeAttributes_init( &bus_objattr );
+	UA_ObjectAttributes bus_objattr;
+	UA_ObjectAttributes_init( &bus_objattr );
 	bus_objattr.description = UA_LOCALIZEDTEXT_ALLOC( "en_US", (char*)"Representation of Modbus industry data bus" );
 	bus_objattr.displayName = UA_LOCALIZEDTEXT_ALLOC( "en_US", (char*)"Modbus" );
 
-	UA_Server_addObjectTypeNode(
+	UA_Server_addObjectNode(
 		m_pServer,
 		UA_NODEID_STRING( 0, (char*)"Modbus" ),
 		UA_NODEID_NUMERIC( 0, UA_NS0ID_OBJECTSFOLDER ),
 		UA_NODEID_NUMERIC( 0, UA_NS0ID_ORGANIZES ),
 		UA_QUALIFIEDNAME_ALLOC( 0, (char*)"Modbus_data_bus" ),
+		UA_NODEID_NULL,
 		bus_objattr,
 		nullptr,
 		&busObjectNodeID );
@@ -68,18 +69,19 @@ void OpcUaServer::setupNamespace()
 //
 /////////////////////////////////////////////////////
 	UA_NodeId PLC1_ObjectNodeID;
-	UA_ObjectTypeAttributes PLC1_objattr;
-	UA_ObjectTypeAttributes_init( &PLC1_objattr );
+	UA_ObjectAttributes PLC1_objattr;
+	UA_ObjectAttributes_init( &PLC1_objattr );
 	PLC1_objattr.description = UA_LOCALIZEDTEXT_ALLOC( "en_US", ( char* )"Representation of PLC controller" );
 	PLC1_objattr.displayName = UA_LOCALIZEDTEXT_ALLOC( "en_US", ( char* )"PLC1" );
 	//UA_NodeId parentNodeID = UA_NODEID_NULL;// UA_NODEID_STRING( 0, ( char* )"Modbus industry data bus" );
 
-	UA_Server_addObjectTypeNode(
+	UA_Server_addObjectNode(
 		m_pServer,
 		UA_NODEID_STRING( 0, ( char* )"PLC1" ),
 		busObjectNodeID,
 		UA_NODEID_NUMERIC( 0, UA_NS0ID_ORGANIZES ),
 		UA_QUALIFIEDNAME_ALLOC( 0, ( char* )"PLC1" ),
+		UA_NODEID_NULL,
 		PLC1_objattr,
 		nullptr,
 		&PLC1_ObjectNodeID );
@@ -173,17 +175,18 @@ void OpcUaServer::setupNamespace()
 //
 /////////////////////////////////////////////////////
 	UA_NodeId PLC2_ObjectNodeID;
-	UA_ObjectTypeAttributes PLC2_objattr;
-	UA_ObjectTypeAttributes_init( &PLC2_objattr );
+	UA_ObjectAttributes PLC2_objattr;
+	UA_ObjectAttributes_init( &PLC2_objattr );
 	PLC2_objattr.description = UA_LOCALIZEDTEXT_ALLOC( "en_US", ( char* )"Representation of PLC controller" );
 	PLC2_objattr.displayName = UA_LOCALIZEDTEXT_ALLOC( "en_US", ( char* )"PLC2" );
 
-	UA_Server_addObjectTypeNode(
+	UA_Server_addObjectNode(
 		m_pServer,
 		UA_NODEID_STRING( 0, ( char* )"PLC2" ),
 		busObjectNodeID,
 		UA_NODEID_NUMERIC( 0, UA_NS0ID_ORGANIZES ),
 		UA_QUALIFIEDNAME_ALLOC( 0, ( char* )"PLC2" ),
+		UA_NODEID_NULL,
 		PLC2_objattr,
 		nullptr,
 		&PLC2_ObjectNodeID );
